@@ -13,4 +13,39 @@
   border-radius: 0.4rem;
   border: 0.1rem solid #bdbfbf;
   padding: 1rem;
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.reactions {
+  display: flex;
+  gap: 1rem;
+}
+
+.tags {
+  display: flex;
+  gap: 1rem;
+  .tag {
+    padding: 0.5rem;
+    background-color: rgba(212, 90, 90, 1);
+    border-radius: 0.4rem;
+  }
+}
+
+.announcement-title {
+  font-weight: bold;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
 }

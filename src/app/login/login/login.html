@@ -1,0 +1,32 @@
+<div class="mb-1">Login with credentials:</div>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="login-header">
+    <div class="input-wrapper relative">
+      <label for="User Name:">User Name</label>
+      <input type="text" formControlName="userName" />
+      @if (loginForm.touched && loginForm.controls['userName'].invalid) {
+      <small class="error">
+        @if (loginForm.controls['userName'].errors?.['required']) {
+        <span>Field is Required</span>
+        } @if (loginForm.controls['userName'].errors?.['invalidUserName']) {
+        <span>Wrong User Name</span>
+        }
+      </small>
+      }
+    </div>
+    <div class="input-wrapper relative">
+      <label for="">Password:</label>
+      <input type="password" formControlName="password" />
+      @if (loginForm.touched && loginForm.controls['password'].invalid) {
+      <small class="error">
+        @if (loginForm.controls['password'].errors?.['required']) {
+        <span>Field is Required</span>
+        } @if (loginForm.controls['password'].errors?.['invalidPassword']) {
+        <span>Invalid Password</span>
+        }
+      </small>
+      }
+    </div>
+  </div>
+  <button class="btn mt-2" type="submit"><span class="btn-label">Login</span></button>
+</form>

@@ -5,7 +5,7 @@
     <option [value]="tag">{{ tag }}</option>
     }
   </select>
-  @for (announcement of homeService.announcements().posts; track $index) {
+  @for (announcement of homeService.announcements()?.posts; track $index) {
   <div class="announcement">
     <div class="announcement__header">
       <div class="announcement-title">{{ announcement.title }}</div>

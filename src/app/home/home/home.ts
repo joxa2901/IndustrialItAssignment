@@ -22,7 +22,7 @@ export class Home {
       tags.push(...p.tags);
     }
 
-    return Array.from(new Set(tags));
+    return Array.from(new Set(tags)).sort();
   });
 
   constructor() {

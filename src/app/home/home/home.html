@@ -1,4 +1,10 @@
 <div class="announcement-wrapper">
+  <select (change)="changeTag($event)">
+    <option value="">All tags</option>
+    @for(tag of allTags(); track $index) {
+    <option [value]="tag">{{ tag }}</option>
+    }
+  </select>
   @for (announcement of homeService.announcements().posts; track $index) {
   <div class="announcement">
     <div class="announcement__header">
@@ -47,7 +53,7 @@
     </div>
     <div class="tags">
       @for (tag of announcement.tags; track $index) {
-      <div class="tag">{{ tag }}</div>
+      <div class="tag" [class.active]="selectedTag() === tag">{{ tag }}</div>
       }
     </div>
   </div>

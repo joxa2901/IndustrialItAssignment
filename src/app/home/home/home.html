@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="announcement-wrapper">
+  @for (announcement of homeService.announcements().posts; track $index) {
+  <div class="announcement">
+    <div class="announcement__header">
+      <div class="announcement-title">{{ announcement.title }}</div>
+    </div>
+    <div class="announcement__body">{{ announcement.body }}</div>
+    <div class="announcement__footer">
+      <div class="likes">{{ announcement.reactions.likes }}</div>
+      <div class="dislikes">{{ announcement.reactions.dislikes }}</div>
+      <div class="tags">
+        @for (tag of announcement.tags; track $index) {
+        <div class="tag">{{ tag }}</div>
+        }
+      </div>
+    </div>
+  </div>
+  }
+</div>

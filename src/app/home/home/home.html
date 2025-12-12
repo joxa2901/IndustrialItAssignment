@@ -5,7 +5,8 @@
     <option [value]="tag">{{ tag }}</option>
     }
   </select>
-  @for (announcement of homeService.announcements()?.posts; track $index) {
+  <input type="text" placeholder="Search posts..." (input)="onSearch($event)" />
+  @for (announcement of pagedPosts(); track $index) {
   <div class="announcement">
     <div class="announcement__header">
       <div class="announcement-title">{{ announcement.title }}</div>
@@ -61,6 +62,22 @@
 </div>
 
 <div class="buttons">
+  @if (currentPage() > 1) {
   <button (click)="prev()">Previous Page</button>
+  } @for (pageNumber of relativePageNumbers(); track pageNumber) { @if (currentPage() + pageNumber
+  <= totalPages()) {
+  <button (click)="goToPage(currentPage() + pageNumber)">
+    {{ currentPage() + pageNumber }}
+  </button>
+  } }
+  <span>...</span>
+  @if (currentPage() < totalPages() ) {
   <button (click)="next()">Next Page</button>
+  }
+  <button (click)="goToLastPage()">lastPage</button>
+  <span class="flex">
+    <span>Go to</span>
+    <input (input)="goTo($event)" type="number" />
+    <span>Current page: {{ currentPage() }}</span>
+  </span>
 </div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { AnnouncementPagination } from '../model/announcement';
 
@@ -10,11 +10,19 @@ export class HomeService {
   private http = inject(HttpClient);
   announcements = signal<AnnouncementPagination | null>(null);
 
-  getAnnouncements(limit: number = 10, skip: number = 0) {
-    return this.http
-      .get<AnnouncementPagination>(`${this.baseUrl}?limit=${limit}&skip=${skip}`)
-      .subscribe({
-        next: (a) => this.announcements.set(a),
-      });
+  getAnnouncements() {
+    return this.http.get<AnnouncementPagination>(`${this.baseUrl}`);
   }
+
+  // getAnnouncements(limit: number = 10, skip: number = 0, search?: string) {
+  //   let params = new HttpParams().set('limit', limit).set('skip', skip);
+
+  //   if (search) {
+  //     params = params.set('q', search);
+  //   }
+
+  //   return this.http.get<AnnouncementPagination>(`${this.baseUrl}/search`, { params }).subscribe({
+  //     next: (res) => this.announcements.set(res),
+  //   });
+  // }
 }
